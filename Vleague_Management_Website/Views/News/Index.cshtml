@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "News Page";
+    Layout = "~/Views/Shared/_Layout_News.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TinTuc>
+@foreach (var item in Model)
+{
+    <article id="post-2965"
+             class="cmsmasters_masonry_type post-2965 post type-post status-publish format-image has-post-thumbnail hentry category-featured category-news post_format-post-format-image shortcode_animated"
+             data-category="featured news" style="width: 298px; position: absolute; left: 0px; top: 0px;">
+        <div class="cmsmasters_post_cont">
+            <figure class="cmsmasters_img_wrap">
+                    <a asp-controller="News" asp-action="DetailNews"
+               asp-route-Id="@item.TinTucId"
+                   title="Texas Rangers Finish In Second Place" rel="ilightbox[img_2965_6406e5d8cb416]"
+                   class="cmsmasters_img_link preloader highImg">
+                    <img width="860" height="574"
+                         src="@Url.Content("../Images/News/"+@item.Anhdaidien)" class="full-width wp-post-image"
+                         alt="Texas Rangers Finish In Second Place" loading="lazy" title="Texas Rangers Finish In Second Place"
+                         srcset="@Url.Content("../Images/News/"+@item.Anhdaidien)" 860w
+                         580w sizes="(max-width: 860px) 100vw, 860px">
+                </a>
+            </figure>
+            <div class="cmsmasters_post_cont_info_rightside">
+                <header class="cmsmasters_post_header entry-header">
+                    <h3 class="cmsmasters_post_title entry-title">
+                        <a asp-controller="News" asp-action="DetailNews"
+                       asp-route-Id="@item.TinTucId">@item.TieuDe</a>
+                    </h3>
+                </header>
+                <div class="cmsmasters_post_cont_info entry-meta">
+                    <span class="cmsmasters_post_user_name">
+                        By <a href="../author/cmsmasters/index.html" title="Posts by cmsmasters" class="vcard author" rel="author">
+                            <span class="fn">cmsmasters</span>
+                        </a>
+                    </span><span>In</span>
+                    <div class="cmsmasters_post_category">
+                        <a href="../category/featured/index.html"
+                           rel="category tag">Featured</a> <a href="../category/news/index.html" rel="category tag">News</a>
+                    </div>
+                </div>
+                <div class="cmsmasters_post_content entry-content">
+                </div>
+                    <a class="cmsmasters_post_read_more" asp-controller="News" asp-action="DetailNews"
+               asp-route-Id="@item.TinTucId">
+                    Chi tiết
+                </a>
+            </div>
+        </div>
+    </article>
+}
+<div class="pagination justify-content-center w-100">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new{page = page}), new
+    X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"},
+    PageClasses = new List<String> {"page-link"}
+    })
+</div>
